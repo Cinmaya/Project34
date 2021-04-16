@@ -1,8 +1,8 @@
 //Create variables here
-var dog,dogImg;
+var dog,dogImg,dogImg1;
 var happyDog;
 var database;
-var food,foodStock
+var food,foodStock;
 
 function preload()
 {
@@ -16,6 +16,9 @@ function setup() {
 	createCanvas(500, 500);
   dog=createSprite(250,250,30,30);
   dog.addImage(dogImg);
+  dog.scale=0.2;
+
+  
 
   database=firebase.database();
   foodStock=database.ref('Food');
@@ -30,21 +33,31 @@ function draw() {
   
   if(keyWentDown(UP_ARROW)){
     writeStock(food);
-    dog.addImage(dogHappy);
+    dog.addImage(dogImg1);
+  }
+
+  if(keyWentUp(UP_ARROW)){
+    writeStock(food);
+    dog.addImage(dogImg);
   }
 
   drawSprites();
 
   textSize(25);
   fill("black");
-  text("food left: "+food,200,200);
+  text("food left: "+food,200,180);
   text("Press UP ARROW To Feed Drago Milk",50,50);
   //add styles here
 
-  function readStock(data){
-    food=data.val();
+  if(food === 0){
+    food=20
   }
 
+}
+  function readStock(data){
+    food=data.val();
+  
+  }
   function writeStock(x){
     if(x<=0){
       x=0;
@@ -56,7 +69,7 @@ function draw() {
     })
   }
   
-}
+
 
 
 
