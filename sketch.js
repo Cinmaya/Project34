@@ -13,7 +13,7 @@ function preload()
 
 function setup() { 
   database=firebase.database();
-	createCanvas(500, 500);
+	createCanvas(900, 900);
 
   foodObj = new Food();
 
@@ -21,7 +21,7 @@ function setup() {
   foodStock=database.ref('Food');
   foodStock.on("value",readStock);
 
-  dog=createSprite(250,250,30,30);
+  dog=createSprite(800,250,30,30);
   dog.addImage(dogImg);
   dog.scale=0.2;
 
@@ -47,13 +47,13 @@ function draw() {
   fill("black");
    textSize(20);
   if(lastFed >= 12){
-    text("Last Feed : " + lastFed%12 + "PM",250,30);
+    text("Last Fed : " + lastFed%12 + "PM",250,30);
   }
   else if(lastFed==0){
-    text("Last Feed : 12 AM",250,30);
+    text("Last Fed : 12 AM",250,30);
   }
   else{
-    text("Last Feed : " + lastFed + "AM",250,30);
+    text("Last Fed : " + lastFed + "AM",250,30);
   } 
 
   foodObj.display();
